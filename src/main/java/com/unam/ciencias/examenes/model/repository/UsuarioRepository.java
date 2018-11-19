@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author alexis.aldana
+ * @author 
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     
