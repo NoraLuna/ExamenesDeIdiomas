@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<property resource="application.properties" />
+	<property name="LOG_PATH" value="${LOGBACK.PATH}${spring.application.name}/"></property>
+	<property name="LOG_FILE_DEBUG" value="_debug_mode"></property>
+
+
+	<springProfile name="dev">
+		<root level="info">
+		</root>
+	</springProfile>
+		
+
+	<springProfile name="devbug">
+		<root level="debug">
+		</root>
+	</springProfile>
+
+	<springProfile name="debug">
+		<appender name="FILE_DEV"
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>${LOG_PATH}${spring.application.name}${LOG_FILE_DEBUG}${LOGBACK.EXTENSION}
+			</file>
+			<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+				<level>DEBUG</level>
+			</filter>
+			<rollingPolicy
+				class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<!-- rollover daily -->
+				<!-- <fileNamePattern>${LOG_PATH}emisores_dev_mode-%d{yyyy-MM-dd}.log -->
+				<fileNamePattern>${LOG_PATH}${spring.application.name}${LOG_FILE_DEBUG}-%d{yyyy-MM-dd}${LOGBACK.EXTENSION}
+				</fileNamePattern>
+			</rollingPolicy>
+
+			<encoder
+				class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<pattern>
+					%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+				</pattern>
+			</encoder>
+		</appender>
+
+		<root level="DEBUG">
+			<appender-ref ref="FILE_DEV" />
+		</root>
+	</springProfile>
+
+	<springProfile name="prod">
+		<appender name="FILE"
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>${LOG_PATH}${spring.application.name}${LOGBACK.EXTENSION}
+			</file>
+			<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+				<level>INFO</level>
+			</filter>
+			<rollingPolicy
+				class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<!-- rollover daily -->
+				<!-- <fileNamePattern>${LOG_PATH}emisores-%d{yyyy-MM-dd}.log -->
+				<fileNamePattern>${LOG_PATH}${spring.application.name}-%d{yyyy-MM-dd}${LOGBACK.EXTENSION}
+				</fileNamePattern>
+			</rollingPolicy>
+
+			<encoder
+				class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<pattern>
+					%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+				</pattern>
+			</encoder>
+		</appender>
+
+		<root level="INFO">
+			<appender-ref ref="FILE" />
+		</root>
+	</springProfile>
+</configuration>

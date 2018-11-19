@@ -1,0 +1,107 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <S:Body>
+        <ns2:MT_INGRESOS_REQ xmlns:ns2="http://fibrainn.mx/ECC/ExternalServices/0015/Ingresos">
+            <HEADER>
+                <TIPO>ANT</TIPO>
+                <USERNAME>PIWSCOM</USERNAME>
+                <HEADER_TXT>Pruebas de conectividad, Prueba</HEADER_TXT>
+                <COMP_CODE>DBM121023M10</COMP_CODE>
+                <DOC_DATE>06.11.2018</DOC_DATE>
+                <PSTNG_DATE>06.11.2018</PSTNG_DATE>
+                <FISC_YEAR>2018</FISC_YEAR>
+                <FIS_PERIOD>11</FIS_PERIOD>
+                <DOC_TYPE>ZI</DOC_TYPE>
+                <REF_DOC_NO>nullnull</REF_DOC_NO>
+                <UUID>FFFFFFFF-1737-B6AF-C5BD-6BFFE7713EE9</UUID>
+                <URL_XML>http://www.facto.com.mx:80/facto/CfdiServlet?uuid=FFFFFFFF-1737-B6AF-C5BD-6BFFE7713EE9&amp;rrfc=XAXX010101000&amp;erfc=DBM121023M10&amp;file=xml</URL_XML>
+                <URL_PDF>http://www.facto.com.mx:80/facto/CfdiServlet?uuid=FFFFFFFF-1737-B6AF-C5BD-6BFFE7713EE9&amp;rrfc=XAXX010101000&amp;erfc=DBM121023M10&amp;file=pdf</URL_PDF>
+            </HEADER>
+            <ACC_GL>
+                <ITEMNO_ACC>2</ITEMNO_ACC>
+                <GL_ACCOUNT>ANT</GL_ACCOUNT>
+                <ITEM_TEXT>Pruebas de conectividad, Prueba</ITEM_TEXT>
+                <REF_KEY_1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <REF_KEY_2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <REF_KEY_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <DOC_TYPE>ZI</DOC_TYPE>
+                <COMP_CODE>DBM121023M10</COMP_CODE>
+                <FIS_PERIOD>11</FIS_PERIOD>
+                <FISC_YEAR>2018</FISC_YEAR>
+                <PSTNG_DATE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <ALLOC_NMBR/>
+                <TAX_CODE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <COSTCENTER xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <PROFIT_CTR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <WBS_ELEMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <ORDERID xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <SEGMENT/>
+            </ACC_GL>
+            <ACC_AR>
+                <ITEMNO_ACC>1</ITEMNO_ACC>
+                <CUSTOMER>XAXX010101000</CUSTOMER>
+                <GL_ACCOUNT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <REF_KEY_1>20646042000666</REF_KEY_1>
+                <REF_KEY_2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <REF_KEY_3 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <COMP_CODE>DBM121023M10</COMP_CODE>
+                <PMNTTRMS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <BLINE_DATE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <PYMT_METH xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <ALLOC_NMBR/>
+                <ITEM_TEXT>Pruebas de conectividad, Prueba</ITEM_TEXT>
+                <TAX_CODE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <SP_GL_IND_AR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </ACC_AR>
+            <ACC_CA>
+                <ITEMNO_ACC>1</ITEMNO_ACC>
+                <CURRENCY>MXN</CURRENCY>
+                <AMT_DOCCUR>1.19</AMT_DOCCUR>
+                <EXCH_RATE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <EXCH_RATE_V xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <AMT_BASE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <TAX_AMT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </ACC_CA>
+            <ACC_CA>
+                <ITEMNO_ACC>2</ITEMNO_ACC>
+                <CURRENCY>MXN</CURRENCY>
+                <AMT_DOCCUR>-1.19</AMT_DOCCUR>
+                <EXCH_RATE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <EXCH_RATE_V xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <AMT_BASE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <TAX_AMT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </ACC_CA>
+        </ns2:MT_INGRESOS_REQ>
+    </S:Body>
+</S:Envelope>
+
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Header/>
+    <SOAP:Body>
+        <ns0:MT_INGRESOS_RES xmlns:ns0="http://fibrainn.mx/ECC/ExternalServices/0015/Ingresos">
+            <RESPONSE>
+                <TYPE>E</TYPE>
+                <MSG> E RW 609 Error en el documento: BKPFF $ FIQCLNT300 E RW 022 Interfase RW: Saldo en moneda de transacción</MSG>
+                <REF_DOC_NO/>
+                <COMP_CODE/>
+                <FISC_YEAR/>
+            </RESPONSE>
+        </ns0:MT_INGRESOS_RES>
+    </SOAP:Body>
+</SOAP:Envelope>
+
+
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Header/>
+    <SOAP:Body>
+        <ns0:MT_INGRESOS_RES xmlns:ns0="http://fibrainn.mx/ECC/ExternalServices/0015/Ingresos">
+            <RESPONSE>
+                <TYPE>S</TYPE>
+                <MSG/>
+                <REF_DOC_NO>1800289894</REF_DOC_NO>
+                <COMP_CODE>1010</COMP_CODE>
+                <FISC_YEAR>2018</FISC_YEAR>
+            </RESPONSE>
+        </ns0:MT_INGRESOS_RES>
+    </SOAP:Body>
+</SOAP:Envelope>
