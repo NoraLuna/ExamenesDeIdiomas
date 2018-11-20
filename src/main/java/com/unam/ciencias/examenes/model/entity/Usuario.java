@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 
+ * @author alexis.aldana
  */
 @Entity
 @Table(name = "usuario")
@@ -74,7 +74,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "CONTRASENA")
-    private String contraseña;
+    private String contrasena;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -85,15 +85,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "CONFIGURACION_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private ConfiguracionUsuario configuracionId;
-    @JoinColumn(name = "GRUPO_ID_1", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Grupo grupoId1;
-    @JoinColumn(name = "GRUPO_ID_2", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Grupo grupoId2;
-    @JoinColumn(name = "GRUPO_ID_3", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Grupo grupoId3;
 
     public Usuario() {
     }
@@ -102,13 +93,13 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Usuario(Integer id, String nombre, String tipo, String numeroCuenta, String correo, String contraseña, String nivelActual) {
+    public Usuario(Integer id, String nombre, String tipo, String numeroCuenta, String correo, String contrasena, String nivelActual) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.numeroCuenta = numeroCuenta;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.nivelActual = nivelActual;
     }
 
@@ -152,12 +143,12 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getNivelActual() {
@@ -183,30 +174,6 @@ public class Usuario implements Serializable {
 
     public void setConfiguracionId(ConfiguracionUsuario configuracionId) {
         this.configuracionId = configuracionId;
-    }
-
-    public Grupo getGrupoId1() {
-        return grupoId1;
-    }
-
-    public void setGrupoId1(Grupo grupoId1) {
-        this.grupoId1 = grupoId1;
-    }
-
-    public Grupo getGrupoId2() {
-        return grupoId2;
-    }
-
-    public void setGrupoId2(Grupo grupoId2) {
-        this.grupoId2 = grupoId2;
-    }
-
-    public Grupo getGrupoId3() {
-        return grupoId3;
-    }
-
-    public void setGrupoId3(Grupo grupoId3) {
-        this.grupoId3 = grupoId3;
     }
 
     @Override

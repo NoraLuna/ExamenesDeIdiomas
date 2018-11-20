@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 
+ * @author alexis.aldana
  */
 @Entity
 @Table(name = "examen")
@@ -32,7 +30,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Examen.findAll", query = "SELECT e FROM Examen e")
     , @NamedQuery(name = "Examen.findById", query = "SELECT e FROM Examen e WHERE e.id = :id")
     , @NamedQuery(name = "Examen.findByNivel", query = "SELECT e FROM Examen e WHERE e.nivel = :nivel")
-    , @NamedQuery(name = "Examen.findBySalon", query = "SELECT e FROM Examen e WHERE e.salon = :salon")})
+    , @NamedQuery(name = "Examen.findBySalon", query = "SELECT e FROM Examen e WHERE e.salon = :salon")
+    , @NamedQuery(name = "Examen.findByIdiomaId", query = "SELECT e FROM Examen e WHERE e.idiomaId = :idiomaId")
+    , @NamedQuery(name = "Examen.findByHorarioId", query = "SELECT e FROM Examen e WHERE e.horarioId = :horarioId")
+    , @NamedQuery(name = "Examen.findByAplicadorId", query = "SELECT e FROM Examen e WHERE e.aplicadorId = :aplicadorId")})
 public class Examen implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,18 +51,18 @@ public class Examen implements Serializable {
     @NotNull
     @Column(name = "SALON")
     private int salon;
-    @JoinColumn(name = "APLICADOR_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Aplicador aplicadorId;
-    @JoinColumn(name = "GRUPO_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Grupo grupoId;
-    @JoinColumn(name = "HORARIO_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Horario horarioId;
-    @JoinColumn(name = "IDIOMA_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Idioma idiomaId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "IDIOMA_ID")
+    private int idiomaId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "HORARIO_ID")
+    private int horarioId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "APLICADOR_ID")
+    private int aplicadorId;
 
     public Examen() {
     }
@@ -70,10 +71,13 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public Examen(Integer id, String nivel, int salon) {
+    public Examen(Integer id, String nivel, int salon, int idiomaId, int horarioId, int aplicadorId) {
         this.id = id;
         this.nivel = nivel;
         this.salon = salon;
+        this.idiomaId = idiomaId;
+        this.horarioId = horarioId;
+        this.aplicadorId = aplicadorId;
     }
 
     public Integer getId() {
@@ -100,36 +104,28 @@ public class Examen implements Serializable {
         this.salon = salon;
     }
 
-    public Aplicador getAplicadorId() {
-        return aplicadorId;
-    }
-
-    public void setAplicadorId(Aplicador aplicadorId) {
-        this.aplicadorId = aplicadorId;
-    }
-
-    public Grupo getGrupoId() {
-        return grupoId;
-    }
-
-    public void setGrupoId(Grupo grupoId) {
-        this.grupoId = grupoId;
-    }
-
-    public Horario getHorarioId() {
-        return horarioId;
-    }
-
-    public void setHorarioId(Horario horarioId) {
-        this.horarioId = horarioId;
-    }
-
-    public Idioma getIdiomaId() {
+    public int getIdiomaId() {
         return idiomaId;
     }
 
-    public void setIdiomaId(Idioma idiomaId) {
+    public void setIdiomaId(int idiomaId) {
         this.idiomaId = idiomaId;
+    }
+
+    public int getHorarioId() {
+        return horarioId;
+    }
+
+    public void setHorarioId(int horarioId) {
+        this.horarioId = horarioId;
+    }
+
+    public int getAplicadorId() {
+        return aplicadorId;
+    }
+
+    public void setAplicadorId(int aplicadorId) {
+        this.aplicadorId = aplicadorId;
     }
 
     @Override
