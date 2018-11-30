@@ -80,6 +80,12 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "NIVEL_ACTUAL")
     private String nivelActual;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "VALIDADO")
+    private String validado;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
     private List<HistorialUsuario> historialUsuarioList;
     @JoinColumn(name = "CONFIGURACION_ID", referencedColumnName = "ID")
@@ -176,29 +182,12 @@ public class Usuario implements Serializable {
         this.configuracionId = configuracionId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public String getValidado() {
+        return validado;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.unam.ciencias.examenes.model.entity.Usuario[ id=" + id + " ]";
+    public void setValidado(String validado) {
+        this.validado = validado;
     }
     
 }
