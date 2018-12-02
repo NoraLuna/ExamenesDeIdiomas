@@ -5,6 +5,7 @@
  */
 package com.unam.ciencias.examenes.controller;
 
+import com.unam.ciencias.examenes.model.entity.Examen;
 import com.unam.ciencias.examenes.model.repository.ExamenRespository;
 import com.unam.ciencias.examenes.model.repository.UsuarioRepository;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author 
+ * @author
  */
 @RestController
 @RequestMapping("examenes/idiomas/api")
@@ -30,36 +31,39 @@ public class TestController {
     UsuarioRepository usuarioRepository;
     @Autowired
     ExamenRespository examenRepository;
-
+    
     private final static Logger LOG = LoggerFactory.getLogger(TestController.class);
     
-    @GetMapping(value="/test", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity pruebaEjecucion(){
+    @GetMapping(value = "/test", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity pruebaEjecucion() {
         LOG.info("Realizando prueba de ejecución");
         return new ResponseEntity("La aplicacion se está ejecutando", HttpStatus.OK);
     }
     
-    @GetMapping(value="/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> obtenerTodosUsuarios(){
+    @GetMapping(value = "/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> obtenerTodosUsuarios() {
         LOG.info("Se obtendrá la lista de todos los usuarios");
         return new ResponseEntity(usuarioRepository.findAll(), HttpStatus.OK);
     }
     
-    @PostMapping(value="/usuarios", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<?> agregarUsuario(){
+    @PostMapping(value = "/usuarios", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<?> agregarUsuario() {
         LOG.info("Se agregará un nuevo usaurio así por mis huevos");
         return new ResponseEntity("Se procesado correctamen la petición", HttpStatus.OK);
     }
     
-    @GetMapping(value="/examenes", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> obtenerTodosExamenes(){
+    @GetMapping(value = "/examenes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> obtenerTodosExamenes() {
         LOG.info("Se obtendrán todos los exámenes registrados");
         return new ResponseEntity(examenRepository.findAll(), HttpStatus.OK);
     }
     
-    @PostMapping(value="/examenes", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity agregarNuevoExamen(){
+    @PostMapping(value = "/examenes", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity agregarNuevoExamen(Examen examen) {
         LOG.info("Se procederá a agregar un nuevo examen a la base de datos");
+        Examen examenGuardado = examenRepository.saveAndFlush(examen);
+        LOG.info("Se ha alamacenado el registro con los siguientes datos");
+        LOG.info("Id: " + examenGuardado.getId());
         return new ResponseEntity("Se ha recibido la petición correctamente", HttpStatus.OK);
     }
 }
