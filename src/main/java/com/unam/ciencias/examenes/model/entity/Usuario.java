@@ -5,12 +5,16 @@
  */
 package com.unam.ciencias.examenes.model.entity;
 
+import com.unam.ciencias.examenes.util.EnumNivelIdioma;
+import com.unam.ciencias.examenes.util.EnumTipoUsuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.validator.constraints.Range;
 
 /**
  *
@@ -41,6 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo")
     , @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena")
     , @NamedQuery(name = "Usuario.findByNivelActual", query = "SELECT u FROM Usuario u WHERE u.nivelActual = :nivelActual")})
+
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,14 +58,13 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
     @Column(name = "NOMBRE")
     private String nombre;
     @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "TIPO")
-    private String tipo;
+    private EnumTipoUsuario tipo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -76,10 +81,11 @@ public class Usuario implements Serializable {
     @Column(name = "CONTRASENA")
     private String contrasena;
     @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Range(min = 1, max = 200)
     @Column(name = "NIVEL_ACTUAL")
-    private String nivelActual;
+    private EnumNivelIdioma nivelActual;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -99,7 +105,7 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Usuario(Integer id, String nombre, String tipo, String numeroCuenta, String correo, String contrasena, String nivelActual) {
+    public Usuario(Integer id, String nombre, EnumTipoUsuario tipo, String numeroCuenta, String correo, String contrasena, EnumNivelIdioma nivelActual) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -125,11 +131,11 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public EnumTipoUsuario getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(EnumTipoUsuario tipo) {
         this.tipo = tipo;
     }
 
@@ -157,11 +163,11 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public String getNivelActual() {
+    public EnumNivelIdioma getNivelActual() {
         return nivelActual;
     }
 
-    public void setNivelActual(String nivelActual) {
+    public void setNivelActual(EnumNivelIdioma nivelActual) {
         this.nivelActual = nivelActual;
     }
 

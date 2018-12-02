@@ -6,8 +6,10 @@
 package com.unam.ciencias.examenes.controller;
 
 import com.unam.ciencias.examenes.model.entity.Examen;
+import com.unam.ciencias.examenes.model.entity.Usuario;
 import com.unam.ciencias.examenes.model.repository.ExamenRespository;
 import com.unam.ciencias.examenes.model.repository.UsuarioRepository;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +45,18 @@ public class TestController {
     @GetMapping(value = "/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtenerTodosUsuarios() {
         LOG.info("Se obtendrá la lista de todos los usuarios");
-        return new ResponseEntity(usuarioRepository.findAll(), HttpStatus.OK);
+        List<Usuario> findAll = usuarioRepository.findAll();
+        return new ResponseEntity(findAll, HttpStatus.OK);
     }
     
     @PostMapping(value = "/usuarios", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<?> agregarUsuario() {
+    public ResponseEntity<?> agregarUsuario(Usuario usuario) {
         LOG.info("Se agregará un nuevo usaurio así por mis huevos");
+        Usuario usuarioGuardado = usuarioRepository.saveAndFlush(usuario);
+        LOG.info("Se ha almacenado el usaurio con los siguientes datos:");
+        LOG.info("ID: " + usuarioGuardado.getId());
+        LOG.info("Nombre: " + usuarioGuardado.getNombre());
+        LOG.info("Nombre: " + usuarioGuardado.getNivelActual().name());        
         return new ResponseEntity("Se procesado correctamen la petición", HttpStatus.OK);
     }
     

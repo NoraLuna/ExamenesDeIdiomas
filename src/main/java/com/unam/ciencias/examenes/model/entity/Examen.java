@@ -5,10 +5,13 @@
  */
 package com.unam.ciencias.examenes.model.entity;
 
+import com.unam.ciencias.examenes.util.EnumNivelIdioma;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,29 +48,27 @@ public class Examen implements Serializable {
     @Column(name = "ID")
     private Integer id;
     @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NIVEL")
-    private String nivel;
+    private EnumNivelIdioma nivel;
     @Basic(optional = false)
     @NotNull
     @Column(name = "SALON")
-    private int salon;
+    private String salon;
     @Basic(optional = false)
     @NotNull
-//    @Column(name = "IDIOMA_ID")
     @JoinColumn(name="IDIOMA_ID", referencedColumnName = "ID")
     @OneToOne
     private Idioma idiomaId;
     @Basic(optional = false)
     @NotNull
-//    @Column(name = "HORARIO_ID")
     @JoinColumn(name="HORARIO_ID", referencedColumnName = "ID")
     @OneToOne
     private Horario horarioId;
     @Basic(optional = false)
     @NotNull
-//    @Column(name = "APLICADOR_ID")
     @JoinColumn(name="APLICADOR_ID", referencedColumnName = "ID")
     @OneToOne
     private Aplicador aplicadorId;
@@ -79,7 +80,7 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public Examen(Integer id, String nivel, int salon, Idioma idiomaId, Horario horarioId, Aplicador aplicadorId) {
+    public Examen(Integer id, EnumNivelIdioma nivel, String salon, Idioma idiomaId, Horario horarioId, Aplicador aplicadorId) {
         this.id = id;
         this.nivel = nivel;
         this.salon = salon;
@@ -96,19 +97,19 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public String getNivel() {
+    public EnumNivelIdioma getNivel() {
         return nivel;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(EnumNivelIdioma nivel) {
         this.nivel = nivel;
     }
 
-    public int getSalon() {
+    public String getSalon() {
         return salon;
     }
 
-    public void setSalon(int salon) {
+    public void setSalon(String salon) {
         this.salon = salon;
     }
 

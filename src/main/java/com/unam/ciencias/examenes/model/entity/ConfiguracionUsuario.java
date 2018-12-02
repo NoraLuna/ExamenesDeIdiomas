@@ -77,8 +77,6 @@ public class ConfiguracionUsuario implements Serializable {
     @NotNull
     @Column(name = "GRUPOS")
     private short grupos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "configuracionId")
-    private List<Usuario> usuarioList;
 
     public ConfiguracionUsuario() {
     }
@@ -160,15 +158,6 @@ public class ConfiguracionUsuario implements Serializable {
 
     public void setGrupos(short grupos) {
         this.grupos = grupos;
-    }
-
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
     }
 
     @Override

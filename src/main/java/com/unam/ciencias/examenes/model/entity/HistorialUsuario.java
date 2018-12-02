@@ -5,11 +5,15 @@
  */
 package com.unam.ciencias.examenes.model.entity;
 
+import com.unam.ciencias.examenes.util.EnumEstatusExamen;
+import com.unam.ciencias.examenes.util.EnumNivelIdioma;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -52,24 +57,28 @@ public class HistorialUsuario implements Serializable {
     private Date fechaAplicacion;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IDIOMA")
-    private int idioma;
+    @JoinColumn(name = "IDIOMA", referencedColumnName = "ID")
+    @OneToOne
+    private Idioma idioma;
     @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NIVEL")
-    private String nivel;
+    private EnumNivelIdioma nivel;
     @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "ESTATUS_EXAMEN")
-    private float estatusExamen;
+    private EnumEstatusExamen estatusExamen;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CALIFICACION")
     private float calificacion;
-    @JoinColumn(name = "USUARIO_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Usuario usuarioId;
+    @Basic(optional = false)
+    @Column(name = "USUARIO_ID")
+    @NotNull
+    private Integer usuarioId;
 
     public HistorialUsuario() {
     }
@@ -78,7 +87,7 @@ public class HistorialUsuario implements Serializable {
         this.id = id;
     }
 
-    public HistorialUsuario(Integer id, int idioma, String nivel, float estatusExamen, float calificacion) {
+    public HistorialUsuario(Integer id, Idioma idioma, EnumNivelIdioma nivel, EnumEstatusExamen estatusExamen, float calificacion) {
         this.id = id;
         this.idioma = idioma;
         this.nivel = nivel;
@@ -102,27 +111,27 @@ public class HistorialUsuario implements Serializable {
         this.fechaAplicacion = fechaAplicacion;
     }
 
-    public int getIdioma() {
+    public Idioma getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(int idioma) {
+    public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
     }
 
-    public String getNivel() {
+    public EnumNivelIdioma getNivel() {
         return nivel;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(EnumNivelIdioma nivel) {
         this.nivel = nivel;
     }
 
-    public float getEstatusExamen() {
+    public EnumEstatusExamen getEstatusExamen() {
         return estatusExamen;
     }
 
-    public void setEstatusExamen(float estatusExamen) {
+    public void setEstatusExamen(EnumEstatusExamen estatusExamen) {
         this.estatusExamen = estatusExamen;
     }
 
@@ -134,11 +143,11 @@ public class HistorialUsuario implements Serializable {
         this.calificacion = calificacion;
     }
 
-    public Usuario getUsuarioId() {
+    public Integer getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Usuario usuarioId) {
+    public void setUsuarioId(Integer usuarioId) {
         this.usuarioId = usuarioId;
     }
 
@@ -166,5 +175,5 @@ public class HistorialUsuario implements Serializable {
     public String toString() {
         return "com.unam.ciencias.examenes.model.entity.HistorialUsuario[ id=" + id + " ]";
     }
-    
+
 }
