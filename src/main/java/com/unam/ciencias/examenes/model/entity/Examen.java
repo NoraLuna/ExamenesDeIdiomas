@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,16 +55,22 @@ public class Examen implements Serializable {
     private int salon;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IDIOMA_ID")
-    private int idiomaId;
+//    @Column(name = "IDIOMA_ID")
+    @JoinColumn(name="IDIOMA_ID", referencedColumnName = "ID")
+    @OneToOne
+    private Idioma idiomaId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "HORARIO_ID")
-    private int horarioId;
+//    @Column(name = "HORARIO_ID")
+    @JoinColumn(name="HORARIO_ID", referencedColumnName = "ID")
+    @OneToOne
+    private Horario horarioId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "APLICADOR_ID")
-    private int aplicadorId;
+//    @Column(name = "APLICADOR_ID")
+    @JoinColumn(name="APLICADOR_ID", referencedColumnName = "ID")
+    @OneToOne
+    private Aplicador aplicadorId;
 
     public Examen() {
     }
@@ -71,7 +79,7 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public Examen(Integer id, String nivel, int salon, int idiomaId, int horarioId, int aplicadorId) {
+    public Examen(Integer id, String nivel, int salon, Idioma idiomaId, Horario horarioId, Aplicador aplicadorId) {
         this.id = id;
         this.nivel = nivel;
         this.salon = salon;
@@ -104,27 +112,27 @@ public class Examen implements Serializable {
         this.salon = salon;
     }
 
-    public int getIdiomaId() {
+    public Idioma getIdiomaId() {
         return idiomaId;
     }
 
-    public void setIdiomaId(int idiomaId) {
+    public void setIdiomaId(Idioma idiomaId) {
         this.idiomaId = idiomaId;
     }
 
-    public int getHorarioId() {
+    public Horario getHorarioId() {
         return horarioId;
     }
 
-    public void setHorarioId(int horarioId) {
+    public void setHorarioId(Horario horarioId) {
         this.horarioId = horarioId;
     }
 
-    public int getAplicadorId() {
+    public Aplicador getAplicadorId() {
         return aplicadorId;
     }
 
-    public void setAplicadorId(int aplicadorId) {
+    public void setAplicadorId(Aplicador aplicadorId) {
         this.aplicadorId = aplicadorId;
     }
 
