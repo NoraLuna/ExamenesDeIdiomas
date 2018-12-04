@@ -84,13 +84,14 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public Examen(Integer id, EnumNivelIdioma nivel, String salon, Idioma idiomaId, Horario horarioId, Aplicador aplicadorId) {
+    public Examen(Integer id, EnumNivelIdioma nivel, String salon, Idioma idiomaId, Horario horarioId, Aplicador aplicadorId, Integer vacantes) {
         this.id = id;
         this.nivel = nivel;
         this.salon = salon;
         this.idiomaId = idiomaId;
         this.horarioId = horarioId;
         this.aplicadorId = aplicadorId;
+        this.vacantes = vacantes;
     }
 
     public Integer getId() {

@@ -7,11 +7,13 @@ package com.unam.ciencias.examenes.model.repository;
 
 import com.unam.ciencias.examenes.model.entity.ConfiguracionUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author 
  */
+@Repository
 public interface ConfiguracionUsuarioRepository extends JpaRepository<ConfiguracionUsuario, Integer>{
     
 }

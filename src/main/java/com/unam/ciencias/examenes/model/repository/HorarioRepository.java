@@ -7,11 +7,13 @@ package com.unam.ciencias.examenes.model.repository;
 
 import com.unam.ciencias.examenes.model.entity.Horario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author alexis.aldana
  */
+@Repository
 public interface HorarioRepository extends JpaRepository<Horario, Integer>{
     
 }

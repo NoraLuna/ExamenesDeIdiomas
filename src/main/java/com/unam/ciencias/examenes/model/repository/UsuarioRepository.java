@@ -7,11 +7,15 @@ package com.unam.ciencias.examenes.model.repository;
 
 import com.unam.ciencias.examenes.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author 
+ * @author
  */
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-    
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+    Usuario findByNumeroCuenta(@Param("numeroCuenta") String numeroCuenta);
 }
