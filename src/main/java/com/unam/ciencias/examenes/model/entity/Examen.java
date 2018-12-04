@@ -72,6 +72,10 @@ public class Examen implements Serializable {
     @JoinColumn(name="APLICADOR_ID", referencedColumnName = "ID")
     @OneToOne
     private Aplicador aplicadorId;
+    @Basic(optional = false)
+    @Column(name="VACANTES")
+    @NotNull
+    private Integer vacantes;
 
     public Examen() {
     }
@@ -137,6 +141,14 @@ public class Examen implements Serializable {
         this.aplicadorId = aplicadorId;
     }
 
+    public Integer getVacantes() {
+        return vacantes;
+    }
+
+    public void setVacantes(Integer vacantes) {
+        this.vacantes = vacantes;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

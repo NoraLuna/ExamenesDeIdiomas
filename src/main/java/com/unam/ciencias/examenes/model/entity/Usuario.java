@@ -86,6 +86,9 @@ public class Usuario implements Serializable {
     @Range(min = 1, max = 200)
     @Column(name = "NIVEL_ACTUAL")
     private EnumNivelIdioma nivelActual;
+    @Basic(optional = true)
+    @Column(name = "EXAMEN_ID")
+    private Integer exmanenId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -105,7 +108,7 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Usuario(Integer id, String nombre, EnumTipoUsuario tipo, String numeroCuenta, String correo, String contrasena, EnumNivelIdioma nivelActual) {
+    public Usuario(Integer id, String nombre, EnumTipoUsuario tipo, String numeroCuenta, String correo, String contrasena, EnumNivelIdioma nivelActual, String validado, Integer examen) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -113,6 +116,8 @@ public class Usuario implements Serializable {
         this.correo = correo;
         this.contrasena = contrasena;
         this.nivelActual = nivelActual;
+        this.validado = validado;
+        this.exmanenId = examen;
     }
 
     public Integer getId() {
@@ -195,5 +200,14 @@ public class Usuario implements Serializable {
     public void setValidado(String validado) {
         this.validado = validado;
     }
+
+    public Integer getExmanenId() {
+        return exmanenId;
+    }
+
+    public void setExmanenId(Integer exmanenId) {
+        this.exmanenId = exmanenId;
+    }
+    
     
 }
